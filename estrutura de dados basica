@@ -1,0 +1,49 @@
+def task_manager():
+    tasks =[]
+
+    while True:
+
+        print("\n --- Minha Lista de Tarefas---")
+        print (" 1. adicionar Tarefas")
+        print( " 2. Listar Tarefas ")
+        print(" 3. Marcar como Concluida ")
+        print(" 4. Sair ")
+        opcao = input('\n Escolha uma opcao (1-4): ')
+
+        if opcao == "1":
+            descricao = input ("O que voce precisa fazer? ")
+            nova_tarefa = {"tarefa" : descricao, "concluida": False}
+            tasks.append(nova_tarefa)
+            print(f"tarefa ' {descricao} ' adicionada com sucesso!")
+
+        elif opcao == "2":
+            print("\n Suas Tarefas: ")
+
+            if not tasks:
+               print(" A lista esta Vazia. Que tal adicionar algo? ")
+            else:
+                for i, t in enumerate(tasks):
+                    status = "✔️" if t["concluida"] else "❌"
+                    print (f" {i+ 1}.[{status}]{t['tarefa']}")
+
+        elif opcao =="3":  
+                if not tasks:
+                    print(" Nao ha tarefgas para marcar. ")
+                    continue
+                try:
+                    indice = int(input("digite um numero da tarefa que temrinou: ")) -1
+                    if 0 <= indice < len(tasks):
+                        tasks [ indice ]["concluida"] = True
+                        print(f"Parabens! '{tasks[indice]['tarefa']}' Concluida!")
+                    else:
+                        print ("Numero invalido.")
+                except ValueError:
+                    print(" Por Favor, digite um numero valido. ")
+        elif opcao == "4":
+            print( " Saindo... Até logo! ")
+            break
+        else:
+            print( "Opção Invalída. Tente novamente. ")
+if __name__ == "__main__":
+ task_manager() 
+
